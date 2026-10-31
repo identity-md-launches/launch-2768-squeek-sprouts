@@ -1,0 +1,8 @@
+# Explicit submission path budget: source/config/docs/lockfile <= 1 MiB;
+# assets <= 1 MiB; dist <= 2 MiB; artifacts <= 2 MiB; 2 MiB reserve.
+# Generated dependencies, caches and scratch evidence have a zero-byte budget.
+**/node_modules/
+**/.npm/
+**/.cache/
+/test/scratch/
+/.playwright-mcp/

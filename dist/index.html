@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1c211b">
+  <title>Squeek Sprouts · A little garden, powered by a hamster</title>
+  <meta name="description" content="Plant a tiny pixel garden powered by Squeektoshi's real wheel work. Grow, harvest and collect golden crops on Squeekchain. No wallet or gas.">
+  <meta property="og:title" content="Squeek Sprouts · One hamster. Nine little plots.">
+  <meta property="og:description" content="A cozy idle garden that grows when Squeektoshi runs. Plant a seed and let a real hamster do his thing.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./assets/share.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+  <link rel="preload" href="./assets/fonts/silkscreen.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/vt323.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./src/style.css">
+  <script type="module" src="./src/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#garden">Skip to garden</a>
+  <div class="site-wrap">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Squeek Sprouts home">
+        <svg class="brand-mark" viewBox="0 0 32 36" aria-hidden="true"><path fill="#7e9e5b" d="M15 11h3v17h-3zM5 5h8v3h3v7h-6v-3H5zM20 2h8v7h-3v4h-7V6h2z"/><path fill="#b3cd7d" d="M6 5h5v3H6zm16-3h6v3h-6z"/><path fill="#b38a53" d="M6 26h22v4H6zm3 4h16v4H9z"/><path fill="#e7bc75" d="M9 26h13v3H9z"/></svg>
+        <h1>Squeek <span>Sprouts</span></h1>
+      </a>
+      <div class="header-tools"><span id="save-status" class="saved"><span class="tiny-square"></span>Saved locally</span><button id="help-button" class="quiet-button" aria-label="How to play"><span class="help-icon" aria-hidden="true">?</span><span class="help-label">How to play</span></button></div>
+    </header>
+
+    <div class="intro-row"><p>A little garden. Powered by a real hamster.</p><span class="chain-label"><span class="tiny-square"></span>Made for Squeekchain</span></div>
+    <div id="storage-warning" class="notice" role="status" hidden></div>
+    <div id="mode-notice" class="notice demo-notice" hidden><span>Demo garden · Simulated wheel, separate save.</span><button id="return-live" class="text-button">Return to live</button></div>
+
+    <main class="game-layout">
+      <section class="wheel-house" aria-labelledby="wheel-heading">
+        <div class="section-heading wheel-heading"><h2 id="wheel-heading">Meet Squeektoshi</h2><button id="motion-button" class="icon-button" aria-label="Pause animation" aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 4v8M11 4v8" stroke="currentColor" stroke-width="2"/></svg></button></div>
+        <div class="scene-wrap"><canvas id="wheel-canvas" width="280" height="220" role="img" aria-label="Squeektoshi resting beside his wheel in a pixel garden"></canvas><span id="scene-tag" class="scene-tag">A well-earned nap</span></div>
+        <div class="wheel-caption">
+          <div id="wheel-status" class="status-pill" role="status"><span class="tiny-square"></span><span id="status-text">Connecting to the wheel</span></div>
+          <p id="wheel-note">A tiny hamster, setting the pace.</p>
+          <div class="signal-row"><span id="signal-text">Checking the live signal…</span><button id="demo-button" class="text-button">Try demo</button></div>
+        </div>
+      </section>
+
+      <section class="game-panel" aria-label="Play Squeek Sprouts">
+        <section class="seed-shed" aria-labelledby="seed-heading">
+          <div class="section-heading"><h2 id="seed-heading">Seed shed</h2><span class="section-hint">Pick your next little thing</span></div>
+          <div id="seed-list" class="seed-list" role="group" aria-label="Choose a seed"></div>
+          <div id="seed-detail" class="seed-detail"><span>Wheel Radish</span><span>40 work <span aria-hidden="true">·</span> Sells for 6</span></div>
+        </section>
+        <section class="garden-section" aria-labelledby="garden-heading">
+          <div class="garden-topline"><div><h2 id="garden-heading">Your garden</h2><p id="garden-instruction">Select an empty plot to plant a radish.</p></div><div class="crumb-purse"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#bd8d43" d="M4 7h14v3h3v11H4z"/><path fill="#ebc477" d="M6 4h11v3h3v10H3V7h3z"/><path fill="#9c7037" d="M7 8h3v3H7zm7 4h3v3h-3zm-8 1h2v2H6z"/></svg><span><span id="crumbs" class="crumb-count">10</span><span class="crumb-label">crumbs</span></span></div></div>
+          <div id="garden" class="garden-grid" role="group" aria-label="Nine garden plots" tabindex="-1"></div>
+          <div class="garden-bottom"><span id="plot-count">3 of 9 plots open</span><span id="bonus-hint" class="bonus-hint">Fresh harvests earn 2×</span></div>
+          <div id="feedback" class="feedback" role="status" aria-live="polite">Your first seeds are on the house.</div>
+        </section>
+      </section>
+
+      <section class="telemetry" aria-labelledby="wheel-data-heading">
+        <div class="section-heading"><h2 id="wheel-data-heading">From the wheel</h2><span class="live-mark" id="data-source">Live data</span></div>
+        <dl class="wheel-data"><div class="work-value"><dt>Wheel work</dt><dd id="work-value">···</dd></div><div><dt>RPM</dt><dd id="rpm-value">···</dd></div><div><dt>Speed</dt><dd><span id="speed-value">···</span> <span class="unit">m/s</span></dd></div><div><dt>Distance</dt><dd><span id="distance-value">···</span> <span class="unit">km</span></dd></div><div><dt id="block-label">Squeek block</dt><dd id="block-value">···</dd></div></dl>
+        <div class="grown-here"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M9 18V8H3V3h4v2h3v6h2V5h5v5h-5" fill="none" stroke="currentColor" stroke-width="2"/></svg><span>Work grown here</span><span id="grown-value">0</span></div>
+        <p class="wheel-footnote">No timers. Every sprout follows his wheel.</p>
+      </section>
+
+      <section class="journal" aria-labelledby="journal-heading">
+        <div class="section-heading"><h2 id="journal-heading"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 2h12v16H4zM2 6h4m-4 4h4m-4 4h4m3-8h4m-4 4h4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Garden journal</h2><span id="journal-summary">Your story starts here</span></div>
+        <ol id="journal-list" class="journal-list"></ol>
+        <button id="journal-more" class="text-button" hidden>Show older entries</button>
+      </section>
+    </main>
+
+    <div class="closing-row"><p>Small seeds. Slow moments. Good things growing.</p><div class="reset-controls"><button id="reset-button" class="text-button">Reset garden</button><button id="reset-cancel" class="text-button" hidden>Cancel</button></div></div>
+    <footer><p>Reads <a href="https://api.squeekchain.com/v1/status" target="_blank" rel="noopener noreferrer">Squeekchain's public API</a>. No wallet, no gas, nothing is signed.</p><span>One hamster. Nine little plots.</span></footer>
+  </div>
+
+  <dialog id="help-dialog" aria-labelledby="help-title">
+    <div class="dialog-heading"><h2 id="help-title">A garden at hamster speed</h2><button id="close-help" class="icon-button" aria-label="Close how to play">×</button></div>
+    <p>Pick a seed, then select an empty plot. Squeektoshi's real wheel passes grow your crops, even while you're away.</p>
+    <ol class="help-steps"><li><span>1</span><div><h3>Plant a little possibility</h3><p>Radish seeds are free. Earn crumbs to unlock new seeds and buy more plots.</p></div></li><li><span>2</span><div><h3>Let him do his thing</h3><p>Running grows the garden. Napping pauses it. There are no real-time countdowns.</p></div></li><li><span>3</span><div><h3>Pick something good</h3><p>Select a glowing ripe crop to harvest. Harvest during a run for 2× crumbs and a 15% golden chance.</p></div></li></ol>
+    <div class="help-note"><h3>A little golden luck</h3><p>A golden crop adds 5× to the fresh reward: 10× its base selling price. Nap-time harvests earn the base price.</p></div>
+    <p class="help-small">Live data refreshes every 15 seconds. A stale signal pauses growth and fresh bonuses. Counter restarts keep your progress. Your garden is saved in this browser; clearing site data removes it.</p>
+    <p class="help-small">Demo mode simulates runs and naps in a separate garden. You can return to your live garden at any time.</p>
+    <button id="start-growing" class="primary-button">Let's grow</button>
+  </dialog>
+  <noscript><p class="noscript">Squeek Sprouts needs JavaScript to read the wheel and tend your garden. Enable it in your browser, then reload.</p></noscript>
+</body>
+</html>
